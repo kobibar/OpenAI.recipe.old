@@ -1,14 +1,21 @@
 # OpenAI Configuration
 
-Date: 22 March, 2021
+## Changelog
+| Date              | Description                                             |
+|-------------------|---------------------------------------------------------|
+| 22 March, 2021    | Initial version                                         |
+| 05 April, 2021    | Added "Rail-Optimized" and "SHARP" validations          |
+
+## References
+
+- ["Modifying UFM Configuration Files" in UFM Appliance documentation](https://docs.mellanox.com/display/UFMSDNAppUMv450/Modifying+UFM+Configuration+Files) 
+- [How To Configure Adaptive Routing and SHIELD (New)](https://community.mellanox.com/s/article/How-To-Configure-Adaptive-Routing-and-SHIELD-New)
+
 
 ## UFM Appliance
-
 Changes in SM and SHARP configuration files need export/import from/to UFM Appliance
-See: ["Modifying UFM Configuration Files" in UFM Appliance documentation](https://docs.mellanox.com/display/UFMSDNAppUMv450/Modifying+UFM+Configuration+Files) 
 
-### Phase 1 (Performance tuning for large IB subnet)
-
+### Performance tuning for large IB subnet
 1. Connect UFM Appliance by two ports to two different leaf switches
 2. Enable SM multi-port configuration in UFM Appliance
 3. VL15 buffer `hca-vl15-window` should be configured to 32KB (max 128KB)
@@ -29,17 +36,6 @@ ib ibdiagnet gmp-window 8192
 
 `hca-vl15-window` and `hca-smp-window` required reboot of UFM Appliance.
 
-
-### Phase 2 (SHARP)
-
-1. Enable SHARP
-
-```
-ib sharp enable
-ib sm sharp enable
-ib sharp smx-protocol ucx
-```
-
 ## SM
 
 ### SM settings
@@ -51,7 +47,6 @@ virt_max_ports_in_process 512
 
 max_operational_vls 2
 
-# Double check
 qos TRUE
 
 # Single MAD Sl2vl for all ports
@@ -71,7 +66,7 @@ scatter_ports 8
 # 0 - maximum
 routing_threads_num 24
 
-# 0 - defsult (use all possible threads)
+# 0 - default (use all possible threads)
 smp_threads 0
 gmp_threads 0
 
@@ -82,7 +77,7 @@ enable_inc_mc_routing TRUE
 ```
 
 ### PGRP policy
-Modify pgrp_policy_file: `/opt/ufm/conf/opensm/pgrp_policy.conf` file
+Modify pgrp_policy_file: `conf/opensm/pgrp_policy.conf` file using export/import procedure.
 
 ```
 port-group
@@ -92,19 +87,15 @@ end-port-group
 ```
 
 ### Root guids
-
-Write into root_guid_file: `/opt/ufm/files/conf/opensm/root_guid.conf` name of policy
+Add root guid's policy name to root_guid_file: `conf/opensm/root_guid.conf` using export/import procedure.
 
 ```
 root_switches
 ```
 
-### TBD & TODOs
-1. pgpl and root guids file must be: import/export (Kobi)
 ## Tools (ibdiagnet)
 
 ### AR (Adaptive Routing) validation
-
 For AR validation run:
 
 ```
@@ -114,9 +105,22 @@ ibdiagnet --routing --r_opt=dump_only --skip lids,sm,nodes_info,pkey,aguid,links
 Output:
 
 ```
+---------------------------------------------
+Fabric Summary
+
+Total Nodes             : 15
+IB Switches             : 3
+IB Channel Adapters     : 9
+IB Aggregation Nodes    : 3
+IB Routers              : 0
+
+Adaptive Routing is enabled on 3 switches
+
+---------------------------------------------
 Summary
 -I- Stage                     Warnings   Errors     Comment
--I- Discovery                 0          0
+-I- Discovery                 3          0
+-I- Virtualization            0          0
 -I- Routing                   0          0
 ```
 
@@ -128,33 +132,78 @@ The command above only dumps AR configuration. For actual checking run:
 ibdiagnet --routing --skip lids,sm,nodes_info,pkey,aguid,links,pm,speed_width_check,temp_sensing,virt
 ```
 
-### TBD & TODOs
+### "Rail-Optimized" connectivity validation
+OpenAI is "rail-optimized". That means, compute nodes are multi-port and each leaf switch connects IB ports in compute nodes located in the same position.
+For checking connectivity run: 
 
-1. Name of ibdiagnet in UFM Appliance: ib_ibdiagnet ???? (Kobi)
-2. Rail optimized validation
-3. Number of switches with AR configured
-4. Community post to AR (Vladimir)
+```
+ibdiagnet --skip lids,sm,nodes_info,pkey,aguid,links,pm,speed_width_check,temp_sensing,virt --rail_validation
+```
+
+Output:
+```
+---------------------------------------------
+Rail Optimized Topology Validation
+-I- Rail Optimized Topology Validation finished successfully
+
+---------------------------------------------
+```
 
 ## SHARP
+SHARP should be enabled only in "stable" IB network.
+
+### UFM Appliance - CLI 
+```
+ib sharp enable
+TODO: Do we need the line below?
+ib sm sharp enable
+ib sharp smx-protocol ucx
+```
+
+### UFM Appliance - SHARP configuration file
 
 Modify `conf/sharp2/sharp_am.cfg`
+
+```
+ib_qpc_sl 1
+fabric_update_interval 10
+lst_file_timeout 10
+lst_file_retries 30
+tree_radix 80
+```
+
+### SHARP Validation
+For SHARP validation run:
+
+```
+sudo ibdiagnet --sharp --skip lids,sm,nodes_info,pkey,aguid,links,pm,speed_width_check,temp_sensing,virt
+```
+
+The command above reports status of SHARP
+```
+-I- SHARP check trees finished successfully
+
+---------------------------------------------
+Fabric Summary
+
+Total Nodes             : 24
+IB Switches             : 4
+IB Channel Adapters     : 16
+IB Aggregation Nodes    : 4
+IB Routers              : 0
+
+Number of aggregation nodes version 1: 4
+Number of aggregation nodes version 2: 0
+Number of LL aggregation trees: 2
+Number of streaming aggregation trees: 0
+Unique job IDs: 1024
+```
+
+## TBD & TODOs
+1. Name of ibdiagnet in UFM Appliance: ib_ibdiagnet ???? (Kobi)
+
+## SHARP
 
 1. Timeout for handling initial IB fabric configuration in SM
 2. Recommended tree radix (will be out-of-box in future versions)
 3. SL for SHARP packets
-
-```
-ib_qpc_sl 1
-ib_sharp_sl 1
-fabric_update_interval 10
-lst_file_timeout 10
-lst_file_retries 30
-tree_radix 40
-```
-
-### TBD and TODOs
-
-1. Radix : 40 vs 80
-2. SAT SL Configuration : SAT vs LLT
-3. SHARP section should include all steps
-
