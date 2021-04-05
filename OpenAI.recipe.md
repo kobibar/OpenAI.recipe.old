@@ -155,7 +155,6 @@ SHARP should be enabled only in "stable" IB network.
 ### UFM Appliance - CLI 
 ```
 ib sharp enable
-TODO: Do we need the line below?
 ib sm sharp enable
 ib sharp smx-protocol ucx
 ```
