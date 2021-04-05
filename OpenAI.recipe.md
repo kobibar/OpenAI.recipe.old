@@ -200,9 +200,3 @@ Unique job IDs: 1024
 
 ## TBD & TODOs
 1. Name of ibdiagnet in UFM Appliance: ib_ibdiagnet ???? (Kobi)
-
-## SHARP
-
-1. Timeout for handling initial IB fabric configuration in SM
-2. Recommended tree radix (will be out-of-box in future versions)
-3. SL for SHARP packets
