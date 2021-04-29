@@ -5,6 +5,7 @@
 |-------------------|---------------------------------------------------------|
 | 22 March, 2021    | Initial version                                         |
 | 05 April, 2021    | Added "Rail-Optimized" and "SHARP" validations          |
+| 29 April, 2021    | Added UFM Settings                                      |
 
 ## References
 
@@ -35,6 +36,97 @@ ib ibdiagnet gmp-window 8192
 ```
 
 `hca-vl15-window` and `hca-smp-window` required reboot of UFM Appliance.
+
+
+## UFM
+
+### UFM settings
+Modify: `conf/gv.cfg`
+
+```
+[Server]
+# report_events that will determine which trap to send  to ufm all/security/none
+report_events = security
+
+# This parameter defines the polling frequency of default session in seconds, from 10 to 60
+dashboard_interval = 300
+
+# minimal possible interval for monitoring session  should be exposed to GUI (under site). GUI will not allow put value that lower than this.
+# Server will check monitoring session and replace lower values by this.(in seconds, from 1 to 10)
+minimal_collection_interval = 300
+
+# default interval for monitoring session  should be exposed to GUI (under site).  The value will appear in Monitoring session dialog.
+#  (in seconds, from 3 to 15)
+default_collection_interval = 300
+
+# interval for checking fabric non-optimal links
+non_opt_links_check_interval = 10800
+
+# time interval that port did not get accounting info and should be reset
+ibpm_counters_reset_interval = 3000
+
+# set optional Site name to be shown in event sent to syslog
+site_name = <set meaningful site-name>
+
+
+[FabricAnalysis]
+# unmanaged_switches_interval (in minutes) - time interval between 2 sequential runs of fabric analysis for unmanaged switches
+unmanaged_switches_interval = -1
+
+# ibdiagnet periodic run interval for cables discovery - runs only if a links were added to the fabric(in minutes)
+periodic_discovery_interval = 30
+
+# timeout for ibdiagnet run time (in seconds)
+ibdiagnet_timeout = 600
+
+
+[Sharp]
+# This parameter defines if sharp process will be running, or not
+# default is false, no need to run sharp aggregation manager
+sharp_enabled = true
+
+
+[SrvMgmt]
+# Interval for switches inventory discovery (in seconds)
+systems_poll = 10800
+
+# delay between 2 sequential sysinfo calls of 2 systems.(in seconds)
+events_time_interval = 300
+
+
+[IBPM]
+comp_ib_slow_interval = 300
+
+# by default, UFM is not setting the UDP buffer size, for large scale fabrics, it
+# is recommended to increase the buffer size to 4M
+set_udp_buffer = yes
+
+# UDP buffer size
+udp_buffer_size = 4194304
+
+
+[UFMAgent]
+# Whether to enable/disable the UFM Agent discovery
+enable_ufma = no
+
+
+[Events]
+# Whether to suppress (disable) link down events in case switch went down
+suppress_link_down_events_upon_switch_down = true
+
+# Max events list size kept in UFM model
+max_ufm_events = 1000
+
+
+[DailyReport]
+# Whether to run daily report or not
+daily_report_enabled = false
+
+
+[UnhealthyPorts]
+# Enable/disable ibdiagnet run for all fabric for ports LLR detection
+enable_ibdiagnet = false
+```
 
 ## SM
 
