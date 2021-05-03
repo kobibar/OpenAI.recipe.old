@@ -7,7 +7,7 @@
 
 ## Prerequisites
 - UFM Appliance 4.4.0-2 **gen 2.5** running UFM 6.5.2-14  (or later)
-- MOFED 5.3 or later in compute node
+- SHARPD from MOFED 5.3 or later or from [HPCX 2.8](https://docs.mellanox.com/display/HPCXv281) or later in compute node
 
 ## General information
 sharp_cmd - Utility to send and receive control messages to/from Aggregation Manager
@@ -36,7 +36,6 @@ Options:
 ```
 
 ## Example
-
 This example describes how to run sharp_cmd installed using Mellanox HPCX.
 
 1. Create port GUIDs file. All GUIDs must be in same reservation
