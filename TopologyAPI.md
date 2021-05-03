@@ -38,8 +38,8 @@ Options:
 Example:
 This example describes how to run sharp_cmd installed using Mellanox HPCX.
 
-1.       Create port GUIDs file.
-All GUIDs must be in same reservation.
+1. Create port GUIDs file. All GUIDs must be in same reservation
+
 For example:
 ```
 $ cat /tmp/guids_file
@@ -52,6 +52,7 @@ $ cat /tmp/guids_file
 ```
 
 2.       Run command:
+
 ```
 $HPCX_SHARP_DIR/bin/sharp_cmd topology --ib-dev mlx5_0:1 --guids_file /tmp/guids_file --topology_file /tmp/topology_file
        --ib-dev mlx5_0:1 --> Choose IB device that is connected to IB sunbet with SHARP Aggregation Manager.
