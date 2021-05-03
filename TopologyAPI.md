@@ -35,7 +35,8 @@ Options:
                 default value: 0
 ```
 
-Example:
+## Example
+
 This example describes how to run sharp_cmd installed using Mellanox HPCX.
 
 1. Create port GUIDs file. All GUIDs must be in same reservation
@@ -51,7 +52,8 @@ $ cat /tmp/guids_file
 0x2c9000000001e
 ```
 
-2.       Run command:
+2. Run command:
+
 
 ```
 $HPCX_SHARP_DIR/bin/sharp_cmd topology --ib-dev mlx5_0:1 --guids_file /tmp/guids_file --topology_file /tmp/topology_file
@@ -59,7 +61,8 @@ $HPCX_SHARP_DIR/bin/sharp_cmd topology --ib-dev mlx5_0:1 --guids_file /tmp/guids
        --topology_file /tmp/topology_file --> Path to topology output file.
 ```
 
-3.       Check output file:
+3. Check output file:
+
 
 ```
 $ cat /tmp/topology_file
