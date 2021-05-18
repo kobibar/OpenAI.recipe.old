@@ -1,17 +1,16 @@
 # SHARP Topology API
 
 ## Changelog
-| Date              | Description                                             |
-|-------------------|---------------------------------------------------------|
-| 02 May, 2021      | Initial version                                         |
+| Date                | Description                                                                                            |
+| ------------------- | ---------------------------------------------------------                                              |
+| 02 May, 2021        | Initial version                                                                                        |
+| 18 May, 2021        | Updated with new configuration required by SHARP 2.4.6 (explicit paramter which enables "Topology API" |
 
 ## Prerequisites
 | Component     | Version                                                                                |
 | ------------- | ---------------------------------------------------------------------------------------|
-| "Server" side | UFM Appliance __gen 2.5__ v4.4.0.6 or later / UFM SW 6.5.2-14  or later                |
+| "Server" side | UFM Appliance __gen 2.5__ 4.5.1.1 or later / UFM SW 6.7.X  or later                    |
 | "Client" side | MOFED 5.3 or later  /  [HPCX 2.8](https://docs.mellanox.com/display/HPCXv281) or later |
-
-UFM Appliance v4.4.0.6 - v4.5.1 requires enabling "reservation" mode in SHARP. Starting from v4.5.1, the API will be enabled without running in "reservation" mode , but with a new own parameter. In all UFM Appliance versions, the API is disabled by default.
 
 ## Configuration
 
@@ -26,7 +25,7 @@ ib sharp smx-protocol ucx
 ### Enabling "reservation" mode in SHARP in UFM Appliance (v4.4.0.6)
 
 ```
-ib sharp allocation enable
+ib sharp topology-api enable
 ```
 
 ## General information
@@ -101,7 +100,6 @@ SwitchName=ibsw6 Nodes=0x2c9000000000a
 SwitchName=ibsw7 Nodes=0x2c90000000012,0x2c90000000016
 ```
 
-## Limitations
-- SHARP Aggregation Manager must run with reservation mode enabled (will be removed in UFM Appliance v4.5.1)
-  - Topology API can only query topology information from set of ports (GUIDs) that are in the same reservation.
+## Notes
+- If SHARP Aggregation Manager runs in reservation mode `ib sharp allocation enable`, "Topology API" can query topology information only for current reservation
 

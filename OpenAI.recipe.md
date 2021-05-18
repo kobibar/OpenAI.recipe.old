@@ -249,6 +249,7 @@ SHARP should be enabled only in "stable" IB network.
 ib sharp enable
 ib sm sharp enable
 ib sharp smx-protocol ucx
+ib sharp topology-api enable
 ```
 
 ### UFM Appliance - SHARP configuration file
@@ -289,6 +290,3 @@ Number of LL aggregation trees: 2
 Number of streaming aggregation trees: 0
 Unique job IDs: 1024
 ```
-
-## TBD & TODOs
-1. Name of ibdiagnet in UFM Appliance: ib_ibdiagnet ???? (Kobi)
