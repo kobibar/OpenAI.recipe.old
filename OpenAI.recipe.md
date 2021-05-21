@@ -137,7 +137,7 @@ Modify: `conf/opensm/opensm.conf`
 #Amount of physical port to handle in one shot
 virt_max_ports_in_process 512
 
-max_operational_vls 2
+max_op_vls 2
 
 qos TRUE
 
