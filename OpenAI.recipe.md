@@ -6,6 +6,7 @@
 | 22 March, 2021    | Initial version                                         |
 | 05 April, 2021    | Added "Rail-Optimized" and "SHARP" validations          |
 | 29 April, 2021    | Added UFM Settings                                      |
+| 18 May, 2021      | Added "topology API" config (UFM Appl 4.5.1)            |
 
 ## References
 
