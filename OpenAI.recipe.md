@@ -262,7 +262,7 @@ ib_qpc_sl 1
 fabric_update_interval 10
 lst_file_timeout 10
 lst_file_retries 30
-tree_radix 80
+max_tree_radix 80
 ```
 
 ### SHARP Validation
