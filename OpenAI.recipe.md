@@ -35,8 +35,9 @@ ib hca-smp-window 128
 ib hca-vl15-window 32
 ib ibdiagnet gmp-window 8192
 ```
-
-`hca-vl15-window` and `hca-smp-window` required reboot of UFM Appliance.
+#### Notes
+- `hca-vl15-window` and `hca-smp-window` required reboot of UFM Appliance
+- Values above are valid for UFM Appliance Gen2.5 (based on ConnectX-6)
 
 
 ## UFM
@@ -243,7 +244,7 @@ Rail Optimized Topology Validation
 ```
 
 ## SHARP
-SHARP should be enabled only in "stable" IB network.
+SHARP should be enabled only in "stable" IB network and in UFM Appliance Gen2.5 .
 
 ### UFM Appliance - CLI 
 ```
