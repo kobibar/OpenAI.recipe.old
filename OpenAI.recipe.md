@@ -251,6 +251,7 @@ SHARP should be enabled only in "stable" IB network and in UFM Appliance Gen2.5 
 ib sharp enable
 ib sm sharp enable
 ib sharp smx-protocol ucx
+no ib sharp allocation enable
 ib sharp topology-api enable
 ```
 
