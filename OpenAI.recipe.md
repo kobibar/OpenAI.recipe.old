@@ -82,12 +82,6 @@ periodic_discovery_interval = 30
 ibdiagnet_timeout = 600
 
 
-[Sharp]
-# This parameter defines if sharp process will be running, or not
-# default is false, no need to run sharp aggregation manager
-sharp_enabled = true
-
-
 [SrvMgmt]
 # Interval for switches inventory discovery (in seconds)
 systems_poll = 10800
