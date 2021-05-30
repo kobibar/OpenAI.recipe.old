@@ -168,6 +168,15 @@ gmp_threads 0
 max_wire_smps_per_device 2
 
 enable_inc_mc_routing TRUE
+
+# 4 is a default in UFM
+max_alt_dr_path_retries 0
+
+# FALSE is default in UFM
+mepi_cache_enabled TRUE
+
+# SM reports statistics each 10 min instead of 60 min (default)
+osm_stats_interval 10
 ```
 
 ### PGRP policy
