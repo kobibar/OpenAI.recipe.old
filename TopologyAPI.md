@@ -4,7 +4,7 @@
 | Date                | Description                                                                                            |
 | ------------------- | ---------------------------------------------------------                                              |
 | 02 May, 2021        | Initial version                                                                                        |
-| 18 May, 2021        | Updated with new configuration required by SHARP 2.4.6 (explicit paramter which enables "Topology API" |
+| 18 May, 2021        | Updated with new configuration required by SHARP 2.4.6 (explicit parameter which enables "Topology API" |
 
 ## Prerequisites
 | Component     | Version                                                                                |
@@ -14,17 +14,12 @@
 
 ## Configuration
 
-### Enabling SHARP in UFM Applience
+### Enabling SHARP in UFM Appliance
 
 ```
 ib sharp enable
 ib sm sharp enable
 ib sharp smx-protocol ucx
-```
-
-### Enabling "reservation" mode in SHARP in UFM Appliance (v4.4.0.6)
-
-```
 ib sharp topology-api enable
 ```
 
