@@ -7,6 +7,7 @@
 | 05 April, 2021    | Added "Rail-Optimized" and "SHARP" validations          |
 | 29 April, 2021    | Added UFM Settings                                      |
 | 18 May, 2021      | Added "topology API" config (UFM Appl 4.5.1)            |
+| 11 June, 2021     | Changes in SM configuration for reducing openms log     |
 
 ## References
 
@@ -171,6 +172,14 @@ mepi_cache_enabled TRUE
 
 # SM reports statistics each 10 min instead of 60 min (default)
 osm_stats_interval 10
+
+# 0 - No reports in SA
+reports 0
+
+# Increase timeout for SA requests in internal queue before drop
+max_msg_fifo_timeout 60000
+
+enable_virt_rec_ext FALSE
 ```
 
 ### PGRP policy
