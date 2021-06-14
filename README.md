@@ -33,3 +33,30 @@ folder: SHARP-Debug
 
 For access credential, please contact NVIDA technical support
 
+## How to enable GID based routing
+
+1. Set the NVRAM
+``` bash
+# mlxconfig -d mlx5_<x> s SRIOV_IB_ROUTING_MODE_P1=0
+```
+
+2. Verify the setting
+```bash
+# mlxconfig -d mlx5_<x> -e q | grep -i -e config -e sriov_ib
+Configurations:                              Default         Current         Next Boot
+        SRIOV_IB_ROUTING_MODE_P1            LID(1)          GID(1)          GID(0)
+```
+
+3. Reset firmware or reboot the machine
+```bash
+# mlxfwreset -d mlx5_<x> -l 3 -y r
+```
+
+4. Verify the setting
+```bash
+# mlxconfig -d mlx5_<x> -e q | grep -i -e config -e sriov_ib
+Configurations:                              Default         Current         Next Boot
+        SRIOV_IB_ROUTING_MODE_P1            LID(1)          GID(0)          GID(0)
+```
+
+5. Restart AM
