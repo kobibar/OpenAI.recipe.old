@@ -26,6 +26,16 @@ $ibdiagnet --skip aguid --gmp_window 8192 --smp_window 256 ..... > /tmp/ibdiag.o
 ```bash
 $ibdiagnet --skip aguidi,virt --gmp_window 8192 --smp_window 256 --pm_pause_time 60 --routing --r_opt rn,drnc --extended_speeds all --counter all --pm_per_lane --get_cable_info --cable_info_disconnected --get_phy_info --get_p_info > /tmp/ibdiag.output
 ```
+
+### How to find "socket-direct" HCAs
+
+The command below prints node guids of HCAs reporting "socket-direct" mode (the data comes from pcie counters)
+
+```bash
+$ sudo ibdiagnet  --get_p_info
+$ awk -F,  'BEGIN{s=0}; /START_P_DB2/{s=1} ; /END_P_DB2/{s=0} ; s==1 &&  $6=="1"  {print $1}' ibdiagnet2.db_csv | sort | uniq
+```
+
 ## Location of debug dumps
 
 ftp: ftp://ftpsupport.mellanox.com
