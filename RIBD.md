@@ -18,8 +18,51 @@ Notes for installation see in guide
 
 ## Server
 
-......................
+### Enable docker service
 
+``` bash
+$ no docker shutdown
+```
+
+### Deploy the container
+
+``` bash
+$ docker pull <image name>
+```
+or (followed by the command “docker load ribd_server.vXXX.tgz”)
+``` bash
+$ image fetch <download URL to ribd_server.vXXX.tgz>
+```
+
+### Show the image [Optional] 
+
+``` bash
+$ show docker images
+```
+
+### Create shared volumes between the appliance and the container
+
+``` bash
+$ docker label ribd.config
+```
+
+### Start the container
+
+``` bash
+$ docker label ribd.config
+```
+
+### Save the configuration changes
+
+``` bash
+$ configuration write
+```
+
+### Show the container is running [Optional] 
+
+``` bash
+$ show docker ps
+```
 
 
 ## Client
@@ -63,13 +106,13 @@ $ root@c9fcff21895e:/#
 $
 $ 
 ```
-   
+
    Docker must be run with --privileged 
-   
+
    You should mount external directory for store configuration. 
-   
+
    Path for mount in docker '/opt/ribd_client/etc/ribd/'
-   
+
    Default configuration will be created at the first run. 
 
 
@@ -79,7 +122,7 @@ $
 ```bash
    $  /opt/ribd_client/bin/ribd_client
 ```
-   
+
    Result tar file will be stored in current folder
 
 ## Configuration 
