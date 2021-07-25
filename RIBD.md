@@ -1,6 +1,7 @@
 # RIBD (Remote IBDiagNet)
 
 &copy; Copyright 2021, NVIDIA CORPORATION & AFFILIATES, Inc. All Rights Reserved.
+
 See file LICENSE for terms.
 
 July 2021

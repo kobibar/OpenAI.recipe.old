@@ -1,6 +1,7 @@
 # SHARP Topology API
 
 © Copyright 2021, NVIDIA CORPORATION & AFFILIATES, Inc. All Rights Reserved.
+
 See file LICENSE for terms.
 
 ## Changelog
