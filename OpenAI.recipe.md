@@ -16,7 +16,7 @@ See file LICENSE for terms.
 
 ## References
 
-- ["Modifying UFM Configuration Files" in UFM Appliance documentation](https://docs.mellanox.com/display/UFMSDNAppUMv450/Modifying+UFM+Configuration+Files) 
+- ["Modifying UFM Configuration Files" in UFM Appliance documentation](https://docs.mellanox.com/display/UFMSDNAppUMv450/Modifying+UFM+Configuration+Files)
 - [How To Configure Adaptive Routing and SHIELD (New)](https://community.mellanox.com/s/article/How-To-Configure-Adaptive-Routing-and-SHIELD-New)
 
 
@@ -144,10 +144,10 @@ max_op_vls 2
 qos TRUE
 
 # Single MAD Sl2vl for all ports
-use_optimized_slvl TRUE 
+use_optimized_slvl TRUE
 
-# Timeout for long MAD config time. might need to change 1000 
-long_transaction_timeout 500 
+# Timeout for long MAD config time. might need to change 1000
+long_transaction_timeout 500
 
 routing_engine ar_updn
 
@@ -187,7 +187,7 @@ max_msg_fifo_timeout 60000
 enable_virt_rec_ext FALSE
 
 # Enables AR asysmetic trees. This feature reduces symmetric tree topologies when some
-# links between switches are missing 
+# links between switches are missing
 ar_tree_asymmetric_flow 1
 ```
 
@@ -249,7 +249,7 @@ ibdiagnet --routing --skip lids,sm,nodes_info,pkey,aguid,links,pm,speed_width_ch
 
 ### "Rail-Optimized" connectivity validation
 OpenAI is "rail-optimized". That means, compute nodes are multi-port and each leaf switch connects IB ports in compute nodes located in the same position.
-For checking connectivity run: 
+For checking connectivity run:
 
 ```
 ibdiagnet --skip lids,sm,nodes_info,pkey,aguid,links,pm,speed_width_check,temp_sensing,virt --rail_validation
@@ -267,7 +267,7 @@ Rail Optimized Topology Validation
 ## SHARP
 SHARP should be enabled only in "stable" IB network and in UFM Appliance Gen2.5 .
 
-### UFM Appliance - CLI 
+### UFM Appliance - CLI
 ```
 ib sharp enable
 ib sm sharp enable
