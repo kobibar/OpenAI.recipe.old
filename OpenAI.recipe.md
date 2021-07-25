@@ -12,6 +12,7 @@ See file LICENSE for terms.
 | 29 April, 2021    | Added UFM Settings                                      |
 | 18 May, 2021      | Added "topology API" config (UFM Appl 4.5.1)            |
 | 11 June, 2021     | Changes in SM configuration for reducing openms log     |
+| 25 July, 2021     | Enabling AR asymmetric trees                            |
 
 ## References
 
@@ -184,6 +185,10 @@ reports 0
 max_msg_fifo_timeout 60000
 
 enable_virt_rec_ext FALSE
+
+# Enables AR asysmetic trees. This feature reduces symmetric tree topologies when some
+# links between switches are missing 
+ar_tree_asymmetric_flow 1
 ```
 
 ### PGRP policy
