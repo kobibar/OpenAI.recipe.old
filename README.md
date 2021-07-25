@@ -1,6 +1,9 @@
 # UFM/SM/SHARP configuration in OpenAI
 Recommended configuration for large-scale setup - OpenAI
 
+© Copyright 2021, NVIDIA CORPORATION & AFFILIATES, Inc. All Rights Reserved.
+See file LICENSE for terms.
+
 - [OpenAI recipe](OpenAI.recipe.md)
 - [Topology API](TopologyAPI.md)
 
