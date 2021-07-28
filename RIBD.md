@@ -18,6 +18,8 @@ Notes for installation see in guide
 
 # Installation Guide
 
+All commands contain RIBD version v0.0.7. You should replace v0.0.7 to your version number.
+
 ## Server
 
 ### Enable docker service
@@ -31,9 +33,9 @@ $ no docker shutdown
 ``` bash
 $ docker pull <image name>
 ```
-or (followed by the command “docker load ribd_server.vXXX.tgz”)
+or (followed by the command “docker load ribd_server.v0.07.tgz”)
 ``` bash
-$ image fetch <download URL to ribd_server.vXXX.tgz>
+$ image fetch scp://<username>@<host>:/hpc/noarch/RIBD/0.0.7/ribd_server.v0.0.7.tgz
 ```
 
 ### Show the image [Optional] 
@@ -48,10 +50,16 @@ $ show docker images
 $ docker label ribd.config
 ```
 
+### Load Image
+
+```bash
+$ docker load ribd_server.v0.0.7.tgz
+```
+
 ### Start the container
 
 ``` bash
-$ docker label ribd.config
+$ docker start ribd_server 0.0.7 ribd_server now-and-init privileged network label ribd.config 
 ```
 
 ### Save the configuration changes
@@ -72,7 +80,7 @@ $ show docker ps
 ### Download client package to the temporary folder 
 
 ``` bash
-$ wget http://server/ribd_server.v0.0.7.tgz -P /tmp
+$ wget http://server/ribd_client.v0.0.7.tgz -P /tmp
 ```
 
 
