@@ -22,6 +22,13 @@ All commands contain RIBD version v0.0.7. You should replace v0.0.7 to your vers
 
 ## Server
 
+### Enter to configuration mode
+
+``` bash
+$ enable 
+$ configure terminal
+```
+
 ### Enable docker service
 
 ``` bash
@@ -31,11 +38,12 @@ $ no docker shutdown
 ### Deploy the container
 
 ``` bash
-$ docker pull <image name>
+$ docker pull <host>/<path>/<image name>
 ```
-or (followed by the command “docker load ribd_server.v0.07.tgz”)
+Alternative way
 ``` bash
 $ image fetch scp://<username>@<host>:/hpc/noarch/RIBD/0.0.7/ribd_server.v0.0.7.tgz
+$ docker load ribd_server.v0.0.7.tgz
 ```
 
 ### Show the image [Optional] 
@@ -50,12 +58,6 @@ $ show docker images
 $ docker label ribd.config
 ```
 
-### Load Image
-
-```bash
-$ docker load ribd_server.v0.0.7.tgz
-```
-
 ### Start the container
 
 ``` bash
@@ -68,7 +70,7 @@ $ docker start ribd_server 0.0.7 ribd_server now-and-init privileged network lab
 $ configuration write
 ```
 
-### Show the container is running [Optional] 
+### Show running containers [Optional] 
 
 ``` bash
 $ show docker ps
