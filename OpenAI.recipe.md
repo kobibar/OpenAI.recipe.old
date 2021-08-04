@@ -13,6 +13,7 @@ See file LICENSE for terms.
 | 18 May, 2021      | Added "topology API" config (UFM Appl 4.5.1)            |
 | 11 June, 2021     | Changes in SM configuration for reducing openms log     |
 | 25 July, 2021     | Enabling AR asymmetric trees                            |
+| 04 August, 2021   | Updated UFM settings                                    |
 
 ## References
 
@@ -86,6 +87,22 @@ periodic_discovery_interval = 30
 
 # timeout for ibdiagnet run time (in seconds)
 ibdiagnet_timeout = 600
+
+
+[Sharp]
+# Interval for checking if SHARP AM is responsive
+check_interval = 60
+# Number of max retries for reporting the SHARP AM is not responsive
+max_retries = 5
+
+
+[logrotate]
+#max_files specifies the number of times to rotate a file before it is deleted.
+#A count of 0 (zero) means no copies are retained. A count of 10 means fifteen copies are retained (default is 10)
+max_files = 10
+#With max_size, the log file is rotated when the specified size is reached. Size may be specified in bytes (default),
+#kilobytes (for example: 100k), or megabytes (for exapmle: 10M). if not specified logs will be rotated once a day.
+max_size = 100M
 
 
 [SrvMgmt]
