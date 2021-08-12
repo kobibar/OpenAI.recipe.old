@@ -52,6 +52,13 @@ $ docker load ribd_server.v0.0.7.tgz
 $ show docker images
 ```
 
+### Check Service Record [Optional]
+
+``` bash
+$ dsm09-0101-0601-02ufm [ mgmt-sa ] (config) # ib saquery SR
+```
+If ribd container is functional, you will see a new Service Record with name RIBD.
+
 ### Create shared volumes between the appliance and the container
 
 ``` bash
@@ -75,7 +82,6 @@ $ configuration write
 ``` bash
 $ show docker ps
 ```
-
 
 ## Client
 
