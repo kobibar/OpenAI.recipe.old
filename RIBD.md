@@ -18,7 +18,7 @@ Notes for installation see in guide
 
 # Installation Guide
 
-All commands contain RIBD version v0.0.7. You should replace v0.0.7 to your version number.
+All examples use v0.0.7. Please replace it with current version.
 
 ## Server
 
@@ -106,6 +106,51 @@ Loaded image: ribd_client:0.0.7
 ```
 
 
+
+# Upgrade Guide
+
+## Server
+
+### Stop current docker
+
+```bash
+$ enable
+$ configure terminal
+$ no docker shutdown
+$ no docker start ribd_server
+```
+
+Remove old image
+
+```bash
+$ docker remove image ribd_server <old version>
+$ no docker label ribd.config
+$ docker label ribd.config
+```
+
+### Deploy new container image
+
+``` bash
+$ docker pull <host>/<path>/<image name>
+```
+
+Alternative way
+
+``` bash
+$ image fetch scp://<username>@<host>:/hpc/noarch/RIBD/0.0.7/ribd_server.v0.0.7.tgz
+$ docker load ribd_server.v0.0.7.tgz
+```
+
+### Start the container & save configuration
+
+``` bash
+$ docker start ribd_server 0.0.7 ribd_server now-and-init privileged network label ribd.config
+$ configuration write
+```
+
+## Client
+
+Same as installation guide
 
 # User Guide
 
