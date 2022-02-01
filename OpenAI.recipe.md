@@ -14,6 +14,7 @@ See file LICENSE for terms.
 | 11 June, 2021     | Changes in SM configuration for reducing openms log     |
 | 25 July, 2021     | Enabling AR asymmetric trees                            |
 | 04 August, 2021   | Updated UFM settings                                    |
+| 01 February, 2022 | Updated UFM settings (UFM v6.8.0)                       |
 
 ## References
 
@@ -60,19 +61,8 @@ report_events = security
 # This parameter defines the polling frequency of default session in seconds, from 10 to 60
 dashboard_interval = 300
 
-# minimal possible interval for monitoring session  should be exposed to GUI (under site). GUI will not allow put value that lower than this.
-# Server will check monitoring session and replace lower values by this.(in seconds, from 1 to 10)
-minimal_collection_interval = 300
-
-# default interval for monitoring session  should be exposed to GUI (under site).  The value will appear in Monitoring session dialog.
-#  (in seconds, from 3 to 15)
-default_collection_interval = 300
-
 # interval for checking fabric non-optimal links
 non_opt_links_check_interval = 10800
-
-# time interval that port did not get accounting info and should be reset
-ibpm_counters_reset_interval = 3000
 
 # set optional Site name to be shown in event sent to syslog
 site_name = <set meaningful site-name>
@@ -80,13 +70,13 @@ site_name = <set meaningful site-name>
 
 [FabricAnalysis]
 # unmanaged_switches_interval (in minutes) - time interval between 2 sequential runs of fabric analysis for unmanaged switches
-unmanaged_switches_interval = -1
+unmanaged_switches_interval = 360
 
 # ibdiagnet periodic run interval for cables discovery - runs only if a links were added to the fabric(in minutes)
 periodic_discovery_interval = 30
 
 # timeout for ibdiagnet run time (in seconds)
-ibdiagnet_timeout = 600
+ibdiagnet_timeout = 1800
 
 
 [Sharp]
@@ -109,19 +99,8 @@ max_size = 100M
 # Interval for switches inventory discovery (in seconds)
 systems_poll = 10800
 
-# delay between 2 sequential sysinfo calls of 2 systems.(in seconds)
-events_time_interval = 300
-
-
-[IBPM]
-comp_ib_slow_interval = 300
-
-# by default, UFM is not setting the UDP buffer size, for large scale fabrics, it
-# is recommended to increase the buffer size to 4M
-set_udp_buffer = yes
-
-# UDP buffer size
-udp_buffer_size = 4194304
+# Threshould events generation interval (in seconds)
+events_time_interval = 120
 
 
 [UFMAgent]
