@@ -16,6 +16,7 @@ See file LICENSE for terms.
 | 04 August, 2021   | Updated UFM settings                                    |
 | 01 February, 2022 | Updated UFM settings (UFM v6.8.0)                       |
 | 01 February, 2022 | Added High BER settings                                 |
+| 01 February, 2022 | Added Telemetry settings                                |
 
 ## References
 
@@ -135,6 +136,11 @@ high_ber_ports_auto_isolation = true
 # Auto isolation mode - which type of ports should be isolated.
 # options: switch-switch,switch-host,all (default: switch-switch)
 auto_isolation_mode = switch-switch
+
+
+[Telemetry]
+history_enabled = false
+
 ```
 
 ## SM
