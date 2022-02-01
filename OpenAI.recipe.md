@@ -15,6 +15,7 @@ See file LICENSE for terms.
 | 25 July, 2021     | Enabling AR asymmetric trees                            |
 | 04 August, 2021   | Updated UFM settings                                    |
 | 01 February, 2022 | Updated UFM settings (UFM v6.8.0)                       |
+| 01 February, 2022 | Added High BER settings                                 |
 
 ## References
 
@@ -72,6 +73,9 @@ site_name = <set meaningful site-name>
 # unmanaged_switches_interval (in minutes) - time interval between 2 sequential runs of fabric analysis for unmanaged switches
 unmanaged_switches_interval = 360
 
+# configure ibdiagnet wether to enable warnings for high BER ports
+enable_ber_warnings = true
+
 # ibdiagnet periodic run interval for cables discovery - runs only if a links were added to the fabric(in minutes)
 periodic_discovery_interval = 30
 
@@ -124,6 +128,13 @@ daily_report_enabled = false
 [UnhealthyPorts]
 # Enable/disable ibdiagnet run for all fabric for ports LLR detection
 enable_ibdiagnet = false
+
+# By enabling this flag all the discovered high ber ports will be marked as unhealthy automatically by UFM
+high_ber_ports_auto_isolation = true
+
+# Auto isolation mode - which type of ports should be isolated.
+# options: switch-switch,switch-host,all (default: switch-switch)
+auto_isolation_mode = switch-switch
 ```
 
 ## SM
