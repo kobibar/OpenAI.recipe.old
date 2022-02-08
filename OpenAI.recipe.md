@@ -17,6 +17,7 @@ See file LICENSE for terms.
 | 01 February, 2022 | Updated UFM settings (UFM v6.8.0)                       |
 | 01 February, 2022 | Added High BER settings                                 |
 | 01 February, 2022 | Added Telemetry settings                                |
+| 08 February, 2022 | Disabled m_key_files definition for IBUtils             |
 
 ## References
 
@@ -275,6 +276,14 @@ Rail Optimized Topology Validation
 -I- Rail Optimized Topology Validation finished successfully
 
 ---------------------------------------------
+```
+
+### IBUtils configuration
+
+Modify: `conf/opensm/ibdiag.conf`
+Comment out "m_key_files" definition to prevent un-necessary delay when executing the IB utilities (e.g. ibswitches, ibnetdiscover,...):
+```
+#m_key_files=/opt/ufm/files/conf/opensm
 ```
 
 ## SHARP
