@@ -18,6 +18,7 @@ See file LICENSE for terms.
 | 01 February, 2022 | Added High BER settings                                 |
 | 01 February, 2022 | Added Telemetry settings                                |
 | 08 February, 2022 | Disabled m_key_files definition for IBUtils             |
+| 13 February, 2022 | Added max_threads_per_core, changed gmp_threads to 4    |
 
 ## References
 
@@ -174,9 +175,15 @@ scatter_ports 8
 # 0 - maximum
 routing_threads_num 24
 
+# Max number of threads that are allowed to run
+# on the same processor during parallel computing
+# If 0, threads assignment per processor is up to
+# operating system initial assignment
+max_threads_per_core 1
+
 # 0 - default (use all possible threads)
 smp_threads 0
-gmp_threads 0
+gmp_threads 4
 
 # number of SMP MADs per device
 max_wire_smps_per_device 2
