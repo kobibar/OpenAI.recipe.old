@@ -19,7 +19,7 @@ See file LICENSE for terms.
 | 01 February, 2022 | Added Telemetry settings                                |
 | 08 February, 2022 | Disabled m_key_files definition for IBUtils             |
 | 13 February, 2022 | Added max_threads_per_core, changed gmp_threads to 4    |
-
+| 15 February, 2022 | Remove multi-port SM enablement due to RM #2968236      |
 ## References
 
 - ["Modifying UFM Configuration Files" in UFM Appliance documentation](https://docs.mellanox.com/display/UFMSDNAppUMv450/Modifying+UFM+Configuration+Files)
@@ -40,7 +40,6 @@ Changes in SM and SHARP configuration files need export/import from/to UFM Appli
 5. GMP Window configuration: 8192
 
 ```
-ufm multi-port-sm enable
 ib sm smp-window 256
 ib ibdiagnet smp-window 256
 ib hca-smp-window 128
